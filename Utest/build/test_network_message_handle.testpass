@@ -1,0 +1,5 @@
+./test_network_message_handle.c:14:test_ParseEndPointFromUrl_get_correct_type:PASS
+
+-----------------------
+1 Tests 0 Failures 0 Ignored 
+OK
