@@ -1,8 +1,7 @@
 #include "terminal_management.h"
 #include "network_message_handle.h"
+#include "end_points.h"
 #include "defines.h"
-
-#define PAGE "{'id':'100'}"
 
 int handle_received_request(
     void* cls,
@@ -14,53 +13,47 @@ int handle_received_request(
     size_t* upload_data_size,
     void** ptr)
 {
-    static int dummy;
-    const char* page = cls;
-    struct MHD_Response* response;
-    int ret;
-	
+    (void)cls;
+    int ret = -1;
+
 	eEndPoint ep = ParseEndPointFromUrl(url);
 	switch (ep)
 	{
 		case eEndPoint_CreateTerminal:
 			if (strcmp(method, "POST"))
 			{
-				handle_create_terminal(page, connection, upload_data, upload_data_size);
+				ret = handle_terminal_create(connection, upload_data, upload_data_size);
 			}
 			break;
 		
 		case eEndPoint_GetTerminal:
-			
+			if (strcmp(method, "GET"))
+			{
+				ret = handle_terminal_read(connection, upload_data, upload_data_size);
+			}
 			break;
 			
 		case eEndPoint_GetTerminalList:
-			
+			if (strcmp(method, "GET"))
+			{
+				ret = handle_terminal_list_get(connection, upload_data, upload_data_size);
+			}
 			break;
+			
 		default:
+			printf("");
 			break;		
 	}
 
     *ptr = NULL;       /* clear context pointer */
-//    response = MHD_create_response_from_buffer(strlen(page), (void*)page, MHD_RESPMEM_PERSISTENT);
-//    ret = MHD_queue_response(connection, MHD_HTTP_OK, response);
-//    MHD_destroy_response(response);
     return ret;
 }
 
 int main(int argc, char** argv)
 {
     struct MHD_Daemon* d;
-    int port = 0;
-    if (argc != 2)
-    {
-        port = 8000;
-    }
-    else
-    {
-    	port = atoi(argv[1]);
-	}
-
-    d = MHD_start_daemon(MHD_USE_THREAD_PER_CONNECTION, port, NULL, NULL, &handle_received_request, PAGE, MHD_OPTION_END);
+        
+    d = MHD_start_daemon(MHD_USE_THREAD_PER_CONNECTION, 80, NULL, NULL, &handle_received_request, NULL, MHD_OPTION_END);
     if (d == NULL)
         return 1;
         

@@ -1,27 +1,29 @@
 #include "terminal_management.h"
 #include "defines.h"
 
-sTerminal gTerminals[100];
+static sTerminal terminals[100];
+static int currentAvailableId = 0;
 
-int handle_create_terminal(
-    const char* page,
-    struct MHD_Connection* connection,
-    const char* upload_data,
-    size_t* upload_data_size)
+int AddeTerminal(sTransaction* pTransactions, int transactionNum)
 {
-    struct MHD_Response* response;
-    int ret;
-
-	// Deserialize terminal data
+	int allocatedId = currentAvailableId++;
+	terminals[allocatedId].id = allocatedId;
+	terminals[allocatedId].pTransactions = pTransactions;
+	terminals[allocatedId].transactionNum = transactionNum;
 	
-	// Store terminal
-	
-	// Send response 
-	
-	//char sendBuf[100];
-    response = MHD_create_response_from_buffer(strlen(sendBuf), (void*)sendBuf, MHD_RESPMEM_PERSISTENT);
-    ret = MHD_queue_response(connection, MHD_HTTP_OK, response);
-    MHD_destroy_response(response);
-    return ret;
+	return allocatedId;
 }
 
+int GetTerminal(int id, sTransaction** pTransactions, int* transactionNum)
+{
+	if (id >= currentAvailableId)
+	{
+		return -1;
+	}
+	
+	sTerminal terminal = terminals[id];
+	*pTransactions = terminal.pTransactions;
+	*transactionNum = terminal.transactionNum;
+	
+	return 0;
+}

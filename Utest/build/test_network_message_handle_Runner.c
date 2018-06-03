@@ -26,14 +26,16 @@
 #include <setjmp.h>
 #include <stdio.h>
 #include "Types.h"
-#include "foo.h"
 #include "defines.h"
 #include "network_message_handle.h"
 
 /*=======External Functions This Runner Calls=====*/
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_ParseEndPointFromUrl_get_correct_type();
+extern void test_ParseEndPointFromUrl_should_know_invalid_url();
+extern void test_ParseEndPointFromUrl_should_be_create_terminal();
+extern void test_ParseEndPointFromUrl_should_be_get_terminal();
+extern void test_ParseEndPointFromUrl_should_be_get_terminal_list();
 
 
 /*=======Suite Setup=====*/
@@ -68,7 +70,10 @@ int main(void)
 {
   suite_setup();
   UnityBegin("./test_network_message_handle.c");
-  RUN_TEST(test_ParseEndPointFromUrl_get_correct_type, 14);
+  RUN_TEST(test_ParseEndPointFromUrl_should_know_invalid_url, 13);
+  RUN_TEST(test_ParseEndPointFromUrl_should_be_create_terminal, 20);
+  RUN_TEST(test_ParseEndPointFromUrl_should_be_get_terminal, 27);
+  RUN_TEST(test_ParseEndPointFromUrl_should_be_get_terminal_list, 34);
 
   return suite_teardown(UnityEnd());
 }

@@ -1,6 +1,10 @@
 #ifndef _DEFINES_H_
 #define _DEFINES_H_
 
+
+#define InvalidTerminalId -1
+
+
 // Definition of card types
 typedef enum 
 {
@@ -31,7 +35,8 @@ typedef struct
 
 typedef enum
 {
-	eEndPoint_CreateTerminal = 0,
+	eEndPoint_Invalid = 0,
+	eEndPoint_CreateTerminal,
 	eEndPoint_GetTerminal,
 	eEndPoint_GetTerminalList
 } eEndPoint;

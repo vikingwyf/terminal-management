@@ -1,5 +1,8 @@
-./test_network_message_handle.c:14:test_ParseEndPointFromUrl_get_correct_type:PASS
+./test_network_message_handle.c:13:test_ParseEndPointFromUrl_should_know_invalid_url:PASS
+./test_network_message_handle.c:20:test_ParseEndPointFromUrl_should_be_create_terminal:PASS
+./test_network_message_handle.c:27:test_ParseEndPointFromUrl_should_be_get_terminal:PASS
+./test_network_message_handle.c:34:test_ParseEndPointFromUrl_should_be_get_terminal_list:PASS
 
 -----------------------
-1 Tests 0 Failures 0 Ignored 
+4 Tests 0 Failures 0 Ignored 
 OK
