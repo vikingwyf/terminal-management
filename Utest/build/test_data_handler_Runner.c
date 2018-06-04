@@ -27,7 +27,7 @@
 #include <stdio.h>
 #include "Types.h"
 #include "defines.h"
-#include "network_message_handle.h"
+#include "data_handler.h"
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -77,7 +77,7 @@ void resetTest(void)
 int main(void)
 {
   suite_setup();
-  UnityBegin("./test_network_message_handle.c");
+  UnityBegin("./test_data_handler.c");
   RUN_TEST(test_ParseEndPointFromUrl_should_know_invalid_url, 16);
   RUN_TEST(test_ParseEndPointFromUrl_should_be_create_terminal, 23);
   RUN_TEST(test_ParseEndPointFromUrl_should_be_get_terminal, 30);

@@ -1,0 +1,6 @@
+./test_terminal_manager.c:16:test_AddeTerminal_should_allocate_an_ID:PASS
+./test_terminal_manager.c:27:test_GetTerminalTransactions_success:PASS
+
+-----------------------
+2 Tests 0 Failures 0 Ignored 
+OK

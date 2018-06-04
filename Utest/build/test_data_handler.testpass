@@ -1,0 +1,16 @@
+./test_data_handler.c:16:test_ParseEndPointFromUrl_should_know_invalid_url:PASS
+./test_data_handler.c:23:test_ParseEndPointFromUrl_should_be_create_terminal:PASS
+./test_data_handler.c:30:test_ParseEndPointFromUrl_should_be_get_terminal:PASS
+./test_data_handler.c:37:test_ParseEndPointFromUrl_should_be_get_terminal_list:PASS
+./test_data_handler.c:44:test_ParseTerminalInfo_return_failure_for_crap_data:PASS
+./test_data_handler.c:56:test_ParseTerminalInfo_support_all_types:PASS
+./test_data_handler.c:76:test_ParseTerminalInfo_support_partial_types:PASS
+{"terminalID":101,"transactions":[]}
+{"terminalID":101,"transactions":[]}./test_data_handler.c:96:test_SerializeTerminalDetails_should_get_correct_json_data_with_no_transaction:PASS
+{"terminalID":101,"transactions":[{"cardType":"Visa","TransactionType":"Credit"},{"cardType":"EFTPOS","TransactionType":"Savings"}]}
+{"terminalID":101,"transactions":[{"cardType":"Visa","TransactionType":"Credit"},{"cardType":"EFTPOS","TransactionType":"Savings"}]}
+./test_data_handler.c:114:test_SerializeTerminalDetails_should_get_correct_json_data_with_transaction:PASS
+
+-----------------------
+9 Tests 0 Failures 0 Ignored 
+OK
