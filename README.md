@@ -15,16 +15,16 @@
   Coninued the work...
   So far I've achieved 
   - Application
-    - I used Dev-c++ as an IDE to create a prject for this test. 
+    - I used Dev-c++ as an IDE to create a project for this test. Please install Dev-c++ to build the project. Need to modify the makefile to make it support unix as well.
     - API "create terminals" 
-      - implemented, but it has a problem to get post data correcly. From libmicrohttpd's doc upload_data in the request handling call back function is empty for the first time and afterwards it will has value. It failed acceptance test anyway. 
+      - implemented, but it has a problem to get post data correcly. From libmicrohttpd's doc upload_data in the request handling call back function is empty for the first time and afterwards it will have value. It failed acceptance test anyway. 
     - API "get terminal details"
       - implemented, tested.
     - API "get termainl list"
       - implementation not complete.
   - Unit test
     - I used cmock to unit test functions in data_handler.c and terminal_manager.c.
-    - Since I had not much time to learn how to get cmock integrted into my project I copied rake files from an example in cmock, and I hard coded the path in a couple of places. Need to use env variable to them.
+    - Since I had not much time to learn how to get cmock integrted into my project I copied rake files from an example in cmock, and I hard coded the path in a couple of places. Need to use env variable to remove hard coded path.
     - To run it
       - install cmock.
       - modify UTest/gcc.yml : line 12 according to your cmock path.
