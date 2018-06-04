@@ -1,5 +1,5 @@
-#include "terminal_management.h"
-#include "network_message_handle.h"
+#include "terminal_manager.h"
+#include "data_handler.h"
 #include "end_points.h"
 #include "defines.h"
 
@@ -15,26 +15,27 @@ int handle_received_request(
 {
     (void)cls;
     int ret = -1;
-
-	eEndPoint ep = ParseEndPointFromUrl(url);
+	
+	int param;
+	eEndPoint ep = ParseEndPointFromUrl(url, &param);	
 	switch (ep)
 	{
 		case eEndPoint_CreateTerminal:
-			if (strcmp(method, "POST"))
+			if (strcmp(method, "POST") == 0 && upload_data != NULL)
 			{
 				ret = handle_terminal_create(connection, upload_data, upload_data_size);
 			}
 			break;
 		
 		case eEndPoint_GetTerminal:
-			if (strcmp(method, "GET"))
+			if (strcmp(method, "GET") == 0) 
 			{
-				ret = handle_terminal_read(connection, upload_data, upload_data_size);
+				ret = handle_terminal_read(connection, param);
 			}
 			break;
 			
 		case eEndPoint_GetTerminalList:
-			if (strcmp(method, "GET"))
+			if (strcmp(method, "GET") == 0)
 			{
 				ret = handle_terminal_list_get(connection, upload_data, upload_data_size);
 			}
@@ -51,7 +52,9 @@ int handle_received_request(
 
 int main(int argc, char** argv)
 {
-    struct MHD_Daemon* d;
+    InitializeTerminalManager();
+	
+	struct MHD_Daemon* d;
         
     d = MHD_start_daemon(MHD_USE_THREAD_PER_CONNECTION, 80, NULL, NULL, &handle_received_request, NULL, MHD_OPTION_END);
     if (d == NULL)

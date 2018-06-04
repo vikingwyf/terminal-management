@@ -1,17 +1,17 @@
 # Project: terminal_management
 # Makefile created by Dev-C++ 5.11
 
-CPP      = g++.exe
-CC       = gcc.exe
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
 WINDRES  = windres.exe
-OBJ      = build/end_points.o build/main.o build/network_message_handle.o build/terminal_management.o
-LINKOBJ  = build/end_points.o build/main.o build/network_message_handle.o build/terminal_management.o
-LIBS     = -L"F:/Program Files/Dev-Cpp/MinGW64/lib" -L"F:/Program Files/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -L"F:/00 SmartPay/lib" -lmicrohttpd -lWs2_32
+OBJ      = build/end_points.o build/main.o build/data_handler.o build/terminal_manager.o
+LINKOBJ  = build/end_points.o build/main.o build/data_handler.o build/terminal_manager.o
+LIBS     = -L"F:/Program Files/Dev-Cpp/MinGW64/lib" -L"F:/Program Files/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -L"F:/00 SmartPay/lib" -lmicrohttpd -lWs2_32 -g3
 INCS     = -I"F:/Program Files/Dev-Cpp/MinGW64/include" -I"F:/Program Files/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"F:/Program Files/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"F:/00 SmartPay/include"
 CXXINCS  = -I"F:/Program Files/Dev-Cpp/MinGW64/include" -I"F:/Program Files/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"F:/Program Files/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"F:/Program Files/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++" -I"F:/00 SmartPay/include"
 BIN      = build/terminal_management.exe
-CXXFLAGS = $(CXXINCS) 
-CFLAGS   = $(INCS) 
+CXXFLAGS = $(CXXINCS) -g3
+CFLAGS   = $(INCS) -g3
 RM       = rm.exe -f
 
 .PHONY: all all-before all-after clean clean-custom
@@ -30,8 +30,8 @@ build/end_points.o: src/end_points.c
 build/main.o: src/main.c
 	$(CC) -c src/main.c -o build/main.o $(CFLAGS)
 
-build/network_message_handle.o: src/network_message_handle.c
-	$(CC) -c src/network_message_handle.c -o build/network_message_handle.o $(CFLAGS)
+build/data_handler.o: src/data_handler.c
+	$(CC) -c src/data_handler.c -o build/data_handler.o $(CFLAGS)
 
-build/terminal_management.o: src/terminal_management.c
-	$(CC) -c src/terminal_management.c -o build/terminal_management.o $(CFLAGS)
+build/terminal_manager.o: src/terminal_manager.c
+	$(CC) -c src/terminal_manager.c -o build/terminal_manager.o $(CFLAGS)

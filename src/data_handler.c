@@ -1,4 +1,4 @@
-#include "network_message_handle.h"
+#include "data_handler.h"
 #include "defines.h"
 #include <string.h>
 #include <stdlib.h>
@@ -8,7 +8,7 @@
 static char hostUrl[100] = {0};
 
 // Get end point name from URL
-eEndPoint ParseEndPointFromUrl(const char* url)
+eEndPoint ParseEndPointFromUrl(const char* url, int* param)
 {
 	// Todo : need to check host name as well
 	
@@ -19,6 +19,7 @@ eEndPoint ParseEndPointFromUrl(const char* url)
 	
 	if (strstr(url, "get_terminal"))
 	{
+		*param = atoi(strrchr(url, '/') + 1);
 		return eEndPoint_GetTerminal;
 	}
 	
@@ -199,4 +200,14 @@ void SerializeTerminalDetails(char** pJson, const sTerminal* pTerminal)
 	strcat(pStr, "}");
 	
 	printf("%s\n", pStr);
+}
+
+void SerializeTerminalCreateResponse(char** pJson, int id)
+{
+	char idStr[10] = {0};
+	itoa(id, idStr, 10);
+	
+    strcpy(*pJson, "{\"id\":\"");
+    strcat(*pJson, idStr);
+	strcat(*pJson, "\"}");
 }

@@ -1,12 +1,7 @@
-#ifdef _NETWORK_MESSAGE_HANDLER_H_
-#define _NETWORK_MESSAGE_HANDLER_H_
+#ifdef _DATA_HANDLER_H_
+#define _DATA_HANDLER_H_
 
-#define I(X) X
-#define STR(X) #X
-#define XSTR(X) STR(X)
-#define HostName "http:I(/)I(/)localhost/"
-
-eEndPoint ParseEndPointFromUrl(char* url);
+eEndPoint ParseEndPointFromUrl(char* url, int* param);
 
 //! Parse json data to get terminal's supported card types and transaction types.
 //! pJson - input, json data which contains terminal info of card types and transaction types.
@@ -23,4 +18,8 @@ int ParseTerminalInfo(
 //! pTerminal - input, terminal detais info.
 void SerializeTerminalDetails(char** pJson, const sTerminal* pTerminal);
 
-#endif // _NETWORK_MESSAGE_HANDLER_H_
+//! Serialize terminal create response into JSON data.
+//! pJson - output, Serialized json data.
+void SerializeTerminalCreateResponse(char** pJson, int id);
+
+#endif // _DATA_HANDLER_H_

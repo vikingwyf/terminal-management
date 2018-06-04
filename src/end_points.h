@@ -13,10 +13,7 @@ int handle_terminal_create(
     size_t* upload_data_size);
     
 //! Provide the end point service to get termainl info and send response to connection \a connection.    
-int handle_terminal_read(
-	struct MHD_Connection* connection,
-    const char* upload_data,
-    size_t* upload_data_size);
+int handle_terminal_read(struct MHD_Connection* connection, int terminalId);
 
 //! Provide the end point service to get the terminal list and send response to connection \a connection.
 int handle_terminal_list_get(
