@@ -28,6 +28,9 @@
 #include "Types.h"
 #include "defines.h"
 #include "network_message_handle.h"
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 /*=======External Functions This Runner Calls=====*/
 extern void setUp(void);
@@ -36,6 +39,11 @@ extern void test_ParseEndPointFromUrl_should_know_invalid_url();
 extern void test_ParseEndPointFromUrl_should_be_create_terminal();
 extern void test_ParseEndPointFromUrl_should_be_get_terminal();
 extern void test_ParseEndPointFromUrl_should_be_get_terminal_list();
+extern void test_ParseTerminalInfo_return_failure_for_crap_data();
+extern void test_ParseTerminalInfo_support_all_types();
+extern void test_ParseTerminalInfo_support_partial_types();
+extern void test_SerializeTerminalDetails_should_get_correct_json_data_with_no_transaction();
+extern void test_SerializeTerminalDetails_should_get_correct_json_data_with_transaction();
 
 
 /*=======Suite Setup=====*/
@@ -70,10 +78,15 @@ int main(void)
 {
   suite_setup();
   UnityBegin("./test_network_message_handle.c");
-  RUN_TEST(test_ParseEndPointFromUrl_should_know_invalid_url, 13);
-  RUN_TEST(test_ParseEndPointFromUrl_should_be_create_terminal, 20);
-  RUN_TEST(test_ParseEndPointFromUrl_should_be_get_terminal, 27);
-  RUN_TEST(test_ParseEndPointFromUrl_should_be_get_terminal_list, 34);
+  RUN_TEST(test_ParseEndPointFromUrl_should_know_invalid_url, 16);
+  RUN_TEST(test_ParseEndPointFromUrl_should_be_create_terminal, 23);
+  RUN_TEST(test_ParseEndPointFromUrl_should_be_get_terminal, 30);
+  RUN_TEST(test_ParseEndPointFromUrl_should_be_get_terminal_list, 37);
+  RUN_TEST(test_ParseTerminalInfo_return_failure_for_crap_data, 44);
+  RUN_TEST(test_ParseTerminalInfo_support_all_types, 56);
+  RUN_TEST(test_ParseTerminalInfo_support_partial_types, 76);
+  RUN_TEST(test_SerializeTerminalDetails_should_get_correct_json_data_with_no_transaction, 96);
+  RUN_TEST(test_SerializeTerminalDetails_should_get_correct_json_data_with_transaction, 114);
 
   return suite_teardown(UnityEnd());
 }

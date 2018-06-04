@@ -2,7 +2,7 @@ import argparse
 import json
 import requests
 
-post_message = {"cardType": ["Visa", "MasterCard", "EFTPOS"], "TransactionType": ["Cheque", "Saviangs", "Credit"]}
+post_message = {"cardType": ["Visa", "MasterCard", "EFTPOS"], "TransactionType": ["Cheque", "Savings", "Credit"]}
 
 
 def test_create_terminal():

@@ -16,7 +16,7 @@ typedef enum
 typedef enum 
 {
 	eTransactionType_Cheque = 0,
-	eTransactionType_Saving,
+	eTransactionType_Savings,
 	eTransactionType_Credit	
 } eTransactionType;
 
@@ -28,9 +28,30 @@ typedef struct
 
 typedef struct
 {
+	sTransaction* transactions;
+	int number;
+} sTransactions;
+
+typedef struct
+{
+	unsigned int supportVisa : 1;
+	unsigned int supportMasterCard : 1;
+	unsigned int supportEfpos : 1;
+} sCardTypes;
+
+typedef struct
+{
+	unsigned int supportCheque : 1;
+	unsigned int supportSavings : 1;
+	unsigned int supportCredit : 1;
+} sTransactionTypes;
+
+typedef struct
+{
 	int id;
-	int transactionNum;
-	sTransaction* pTransactions;
+	sCardTypes supportedCardTypes;
+	sTransactionTypes supportedTransactionTypes; 
+	sTransactions transactions;
 } sTerminal;
 
 typedef enum
