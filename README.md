@@ -16,6 +16,18 @@
   So far I've achieved 
   - Application
     - I used Dev-c++ as an IDE to create a project for this test. Please install Dev-c++ to build the project. Need to modify the makefile to make it support unix as well.
+      - src/main.c
+        - It starts a daemon to receive http requests.
+        - Need to start a thread to start the daemon.
+      - src/end_points.c
+        - It provides the interfaces to handles request services.
+      - src/data_handler.c
+        - It handles JSON data serialize and deserialize. 
+        - In the future it needs to implement a general JSON parser or integrate a JSON lib.
+      - src/terminal_manager.c
+        - It manages terminal data CRUD. So far only create and read are implemented.
+      - src/types & src/AT91SAM7X256.h
+        - Irrelevant to the applicaiton. They're there only because they're referenced by cmock and the rake file. Need to remove them later.  
     - API "create terminals" 
       - implemented, but it has a problem to get post data correcly. From libmicrohttpd's doc upload_data in the request handling call back function is empty for the first time and afterwards it will have value. It failed acceptance test anyway. 
     - API "get terminal details"
